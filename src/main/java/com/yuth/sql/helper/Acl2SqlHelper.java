@@ -119,9 +119,12 @@ public class Acl2SqlHelper {
     }
 
     private static List<Long> genMenuBtnSql(long idStart, long pid, String code, String url, int level, int type) {
-        System.out.println(genMenuSql(idStart + 1, pid, String.format("btn.%s.add", code), "", "", level, type));
-        System.out.println(genMenuSql(idStart + 2, pid, String.format("btn.%s.update", code), "", "", level, type));
-        System.out.println(genMenuSql(idStart + 3, pid, String.format("btn.%s.remove", code), "", "", level, type));
+        System.out.println(
+                genMenuSql(idStart + 1, pid, String.format("btn.%s.add", code), url + "/add", "添加", level, type));
+        System.out.println(
+                genMenuSql(idStart + 2, pid, String.format("btn.%s.update", code), url + "/update", "修改", level, type));
+        System.out.println(
+                genMenuSql(idStart + 3, pid, String.format("btn.%s.remove", code), url + "/remove", "删除", level, type));
 
         return Arrays.asList(idStart + 1, idStart + 2, idStart + 3);
     }
