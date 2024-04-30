@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
@@ -119,14 +118,32 @@ public class Acl2SqlHelper {
     }
 
     private static List<Long> genMenuBtnSql(long idStart, long pid, String code, String url, int level, int type) {
-        System.out.println(
-                genMenuSql(idStart + 1, pid, String.format("btn.%s.add", code), url + "/add", "添加", level, type));
-        System.out.println(
-                genMenuSql(idStart + 2, pid, String.format("btn.%s.update", code), url + "/update", "修改", level, type));
-        System.out.println(
-                genMenuSql(idStart + 3, pid, String.format("btn.%s.remove", code), url + "/remove", "删除", level, type));
+        long id = idStart + 1;
+        List<Long> ids = new ArrayList<>(5);
+        if ("User".equalsIgnoreCase(code)) {
+            ids.add(id);
+            System.out.println(
+                    genMenuSql(id++, pid, String.format("btn.%s.assgin", code), url + "/assgin", "分配角色", level, type));
+        }
 
-        return Arrays.asList(idStart + 1, idStart + 2, idStart + 3);
+        if ("Role".equalsIgnoreCase(code)) {
+            ids.add(id);
+            System.out.println(
+                    genMenuSql(id++, pid, String.format("btn.%s.assgin", code), url + "/assgin", "分配权限", level, type));
+        }
+
+        ids.add(id);
+        System.out.println(genMenuSql(id++, pid, String.format("btn.%s.add", code), url + "/add", "添加", level, type));
+
+        ids.add(id);
+        System.out.println(
+                genMenuSql(id++, pid, String.format("btn.%s.update", code), url + "/update", "修改", level, type));
+
+        ids.add(id);
+        System.out.println(
+                genMenuSql(id++, pid, String.format("btn.%s.remove", code), url + "/remove", "删除", level, type));
+
+        return ids;
     }
 
     private static String wrapValue(String s) {
