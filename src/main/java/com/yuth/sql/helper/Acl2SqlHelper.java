@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
+import com.yuth.sql.helper.model.AclNodeMModel;
 
 public class Acl2SqlHelper {
 
@@ -45,17 +47,22 @@ public class Acl2SqlHelper {
         long step = 1000L;
         long id = step;
         int level = 1;
-        int type = 1;
+        int menuType = 1;
+        int btnType = 2;
         for (AclNodeMModel e : arr) {
-            System.out.println(genMenuSql(id, 0L, e.getName(), e.getPath(), e.getMeta().getTitle(), level, type));
+            System.out.println(genMenuSql(id, 0L, e.getName(), e.getPath(), e.getMeta().getTitle(), level, menuType));
             // children
             if (e.getChildren() != null) {
-                long cid = id + 1;
+                long cid = id + (step / 10);
                 for (AclNodeMModel c : e.getChildren()) {
                     System.out.println(
-                            genMenuSql(cid, id, c.getName(), c.getPath(), c.getMeta().getTitle(), level + 1, type));
+                            genMenuSql(cid, id, c.getName(), c.getPath(), c.getMeta().getTitle(), level + 1, menuType));
                     menuIds.add(cid);
-                    cid++;
+
+                    // 按钮
+                    List<Long> ids = genMenuBtnSql(cid, cid, c.getName(), c.getPath(), level + 2, btnType);
+                    menuIds.addAll(ids);
+                    cid += (step / 10);
                 }
             }
 
@@ -109,6 +116,14 @@ public class Acl2SqlHelper {
         t.append(");");
 
         return t.toString();
+    }
+
+    private static List<Long> genMenuBtnSql(long idStart, long pid, String code, String url, int level, int type) {
+        System.out.println(genMenuSql(idStart + 1, pid, String.format("btn.%s.add", code), "", "", level, type));
+        System.out.println(genMenuSql(idStart + 2, pid, String.format("btn.%s.update", code), "", "", level, type));
+        System.out.println(genMenuSql(idStart + 3, pid, String.format("btn.%s.remove", code), "", "", level, type));
+
+        return Arrays.asList(idStart + 1, idStart + 2, idStart + 3);
     }
 
     private static String wrapValue(String s) {

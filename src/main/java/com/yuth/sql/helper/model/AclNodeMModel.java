@@ -1,4 +1,4 @@
-package com.yuth.sql.helper;
+package com.yuth.sql.helper.model;
 
 import java.util.List;
 
