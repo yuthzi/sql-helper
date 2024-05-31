@@ -1,0 +1,43 @@
+[
+	{
+		"channelName": "POS机",
+		"payAmount": 1915.94,
+		"refundAmount": 46.88,
+		"amount": 1869.06,
+		"payCount": 113,
+		"refundCount": 1,
+		"orderCount": 112,
+		"children": [
+			{
+				"name": "yuth"
+			}
+		]
+	},
+	{
+		"channelName": "线上商城",
+		"payAmount": 164.69,
+		"refundAmount": 0.00,
+		"amount": 164.69,
+		"payCount": 12,
+		"refundCount": 0,
+		"orderCount": 12
+	},
+	{
+		"channelName": "美团外卖",
+		"payAmount": 405.01,
+		"refundAmount": 0.00,
+		"amount": 405.01,
+		"payCount": 13,
+		"refundCount": 0,
+		"orderCount": 13
+	},
+	{
+		"channelName": "饿了么",
+		"payAmount": 141.29,
+		"refundAmount": 0.00,
+		"amount": 141.29,
+		"payCount": 5,
+		"refundCount": 0,
+		"orderCount": 5
+	}
+]

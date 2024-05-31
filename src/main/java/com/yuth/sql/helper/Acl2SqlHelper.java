@@ -13,6 +13,8 @@ public class Acl2SqlHelper {
 
     private static final String sep = ", ";
 
+    private static final String URL_PREFIX = "/admin";
+
     //
     //
     //
@@ -49,11 +51,13 @@ public class Acl2SqlHelper {
         int menuType = 1;
         int btnType = 2;
         for (AclNodeMModel e : arr) {
+            e.setPath(URL_PREFIX + e.getPath());
             System.out.println(genMenuSql(id, 0L, e.getName(), e.getPath(), e.getMeta().getTitle(), level, menuType));
             // children
             if (e.getChildren() != null) {
                 long cid = id + (step / 10);
                 for (AclNodeMModel c : e.getChildren()) {
+                    c.setPath(URL_PREFIX + c.getPath());
                     System.out.println(
                             genMenuSql(cid, id, c.getName(), c.getPath(), c.getMeta().getTitle(), level + 1, menuType));
                     menuIds.add(cid);
