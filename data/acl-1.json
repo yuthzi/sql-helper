@@ -39,7 +39,7 @@
 		"path": "/dev",
 		"redirect": "/dev/ing",
 		"meta": {
-			"title": "开发",
+			"title": "组件demo",
 			"icon": "Goods"
 		},
 		"children": [
@@ -141,7 +141,7 @@
 		},
 		"children": [
 			{
-				"name": "CustomerList",
+				"name": "Customer",
 				"path": "/customer/list",
 				"meta": {
 					"title": "客户列表",
@@ -184,7 +184,7 @@
 				}
 			},
 			{
-				"name": "GoodsSkuList",
+				"name": "GoodsSku",
 				"path": "/goods/sku/index",
 				"meta": {
 					"title": "SKU列表",
@@ -192,7 +192,7 @@
 				}
 			},
 			{
-				"name": "GoodsSpecList",
+				"name": "GoodsSpec",
 				"path": "/goods/spec/index",
 				"meta": {
 					"title": "规格列表",
@@ -200,7 +200,7 @@
 				}
 			},
 			{
-				"name": "GoodsSpuList",
+				"name": "GoodsSpu",
 				"path": "/goods/spu/index",
 				"meta": {
 					"title": "SPU列表",
@@ -219,7 +219,7 @@
 		},
 		"children": [
 			{
-				"name": "OrderList",
+				"name": "Order",
 				"path": "/order/list",
 				"meta": {
 					"title": "订单列表",
@@ -227,8 +227,8 @@
 				}
 			},
 			{
-				"name": "RefundList",
-				"path": "/order/refundList",
+				"name": "Refund",
+				"path": "/order/refund",
 				"meta": {
 					"title": "退款管理",
 					"icon": "Grid"
